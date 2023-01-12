@@ -1,0 +1,65 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+
+    background-color: rgb(10, 10, 10);
+    color: rgb(240, 240, 240);
+}
+
+#load-repo {
+    width: 80vw;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    background-color: rgb(55, 55, 55);
+}
+
+#list-repo {
+    width: 80vw;
+    height: 100%;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    overflow: scroll;
+    background-color: rgb(72, 72, 72);
+}
+
+.list-repo-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 1rem;
+    background-color: rgb(33, 33, 33);
+}
+
+#controls-repo-item,
+#info-repo-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+}
+
+#title-repo-item {
+    text-transform: capitalize;
+}
+
+#desc-repo-item {
+    text-align: justify;
+}
