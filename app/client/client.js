@@ -67,11 +67,12 @@ function renderRepoList() {
     list_repo.replaceChildren(...repos);
 }
 
-function helperVerifySubmitRequest(submit_data) {
+function helperVerifySubmitRequest(submit_data, repo_path_node) {
     const repo_path = submit_data.split("/");
     if (!repo_path || repo_path.length !== 2) return null;
 
-    return `${repo_path[0].trim()}/${repo_path[1].trim()}`;
+    actionSubmitRequest(`${repo_path[0].trim()}/${repo_path[1].trim()}`);
+    repo_path_node.value = "";
 }
 
 async function actionSubmitRequest(submit_data) {
@@ -100,22 +101,12 @@ function setupRepoLoadForm(local_data) {
     const repo_path_node = load_repo.querySelector("input");
     repo_path_node.onkeydown = (event) => {
         if (event.key !== "Enter") return;
-
-        const repo_path = helperVerifySubmitRequest(repo_path_node.value);
-        if (!repo_path) return;
-
-        actionSubmitRequest(repo_path);
-        repo_path_node.value = "";
+        helperVerifySubmitRequest(repo_path_node.value, repo_path_node);
     };
 
     const submit_node = load_repo.querySelector("button");
-    submit_node.onclick = () => {
-        const repo_path = helperVerifySubmitRequest(repo_path_node.value);
-        if (!repo_path) return;
-
-        actionSubmitRequest(repo_path);
-        repo_path_node.value = "";
-    };
+    submit_node.onclick = () =>
+        helperVerifySubmitRequest(repo_path_node.value, repo_path_node);
 }
 
 export { setupRepoLoadForm, renderRepoList };
