@@ -98,6 +98,15 @@ function setupRepoLoadForm(local_data) {
     local_data_ref = local_data;
 
     const repo_path_node = load_repo.querySelector("input");
+    repo_path_node.onkeydown = (event) => {
+        if (event.key !== "Enter") return;
+
+        const repo_path = helperVerifySubmitRequest(repo_path_node.value);
+        if (!repo_path) return;
+
+        actionSubmitRequest(repo_path);
+        repo_path_node.value = "";
+    };
 
     const submit_node = load_repo.querySelector("button");
     submit_node.onclick = () => {
